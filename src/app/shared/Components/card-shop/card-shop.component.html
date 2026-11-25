@@ -1,0 +1,42 @@
+<div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-shop">
+  <!-- تصویر -->
+  <div class="position-relative ratio ratio-1x1 bg-light">
+    <img [src]="product.pictureUrl"
+         [alt]="product.title"
+         class="w-100 h-100 object-fit-cover card-shop-img"
+         loading="lazy"
+         (error)="onImageError($event)">
+  </div>
+
+  <!-- بدنه -->
+  <div class="card-body d-flex flex-column">
+    <h6 class="card-title fw-semibold text-truncate mb-1" [title]="product.title">
+      {{ product.title }}
+    </h6>
+
+    <p class="card-text text-muted small flex-grow-1 mb-3 line-clamp-2">
+      {{ product.description }}
+    </p>
+
+    <div class="d-flex justify-content-between align-items-center mt-auto">
+      <div class="btn-group" role="group">
+        <button type="button"
+                class="btn btn-sm btn-outline-success"
+                title="افزودن به سبد"
+                (click)="addItemToBasket(product)">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+        <button type="button"
+                class="btn btn-sm btn-outline-primary"
+                title="مشاهده"
+                (click)="viewProduct(product)">
+          <i class="fa far fa-eye"></i>
+        </button>
+      </div>
+
+      <span class="fw-bold text-success">
+        {{ product.price | number }} <small class="text-muted">تومان</small>
+      </span>
+    </div>
+  </div>
+</div>

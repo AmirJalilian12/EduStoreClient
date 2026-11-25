@@ -1,0 +1,82 @@
+<div class="container mt-4" *ngIf="basket$ | async as basket">
+
+  <div *ngIf="basket.items && basket.items.length > 0; else emptyBasket">
+
+    <table class="table table-responsive table-hover table-bordered text-center align-middle">
+
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">تصویر محصول</th>
+          <th scope="col">نام محصول</th>
+          <th scope="col">نوع</th>
+          <th scope="col">برند</th>
+          <th scope="col">تعداد</th>
+          <th scope="col">قیمت کل</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of basket.items; let i = index">
+
+          <th scope="row">{{ i + 1 }}</th>
+
+          <td>
+            <img
+              [src]="item.pictureUrl"
+              [alt]="item.product"
+              class="img-thumbnail"
+              style="width: 8rem; height: 8rem; object-fit: contain;">
+          </td>
+
+          <td>{{ item.product }}</td>
+
+          <td>{{ item.type }}</td>
+
+          <td>{{ item.brand }}</td>
+
+          <td>
+            <div class="d-flex justify-content-center align-items-center gap-2">
+
+              <button
+                type="button"
+                class="btn btn-sm btn-success"
+                (click)="increaseItemQuantity(item)"
+                [attr.aria-label]="'افزایش تعداد ' + item.product">
+                <i class="fas fa-plus"></i>
+              </button>
+
+              <span class="fw-bold">{{ item.quantity }}</span>
+
+              <button
+                type="button"
+                class="btn btn-sm btn-warning"
+                (click)="decreaseItemQuantity(item)"
+                [attr.aria-label]="'کاهش تعداد ' + item.product">
+                <i class="fas fa-minus"></i>
+              </button>
+
+            </div>
+          </td>
+
+          <td>
+            {{ item.price * item.quantity | number }}
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>
+    <app-order-total></app-order-total>
+    <a routerLink="/checkout" class="btn btn-success w-100 mt-2">پرداخت</a>
+  </div>
+
+  <ng-template #emptyBasket>
+    <div class="alert alert-info text-center mt-4" role="status">
+      <i class="fas fa-shopping-basket me-2"></i>
+      سبد خرید شما خالی است.
+    </div>
+  </ng-template>
+
+</div>
+```

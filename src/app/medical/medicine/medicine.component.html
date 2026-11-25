@@ -1,0 +1,218 @@
+
+<div class="medicine-page container-fluid py-4" dir="rtl">
+
+  <!-- Header -->
+  <div class="page-header mb-4">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <div class="page-eyebrow">
+          <i class="fa fa-heartbeat me-1"></i>
+          MEDICAL KNOWLEDGE BASE
+        </div>
+
+        <h2 class="page-title">بانک اطلاعات دارویی</h2>
+
+        <p class="page-subtitle mb-0">
+          جستجو، بررسی و مشاهده اطلاعات تخصصی داروها
+        </p>
+      </div>
+
+      <div class="col-md-4 d-none d-md-flex justify-content-end">
+        <div class="header-icon">
+          <i class="fa fa-medkit"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="stats-card h-100">
+        <div class="stat-icon">
+          <i class="fa fa-capsules"></i>
+        </div>
+
+        <div class="stat-content">
+          <span>تعداد داروهای ثبت شده</span>
+          <h3>{{ totalCount }}</h3>
+          <small>دارو در بانک اطلاعاتی</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-section mb-4">
+    <div class="search-title mb-3">
+      <div>
+        <h5>
+          <i class="fa fa-search me-1"></i>
+          جستجوی دارو
+        </h5>
+        <p class="mb-0">نام دارو یا بخشی از نام آن را وارد کنید.</p>
+      </div>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-12 col-md">
+        <div class="search-input-wrapper">
+          <i class="fa fa-search"></i>
+
+          <input
+            type="text"
+            class="form-control search-input"
+            placeholder="مثلاً: استامینوفن، آموکسی‌سیلین..."
+            [(ngModel)]="searchTerm"
+            (keyup.enter)="searchMedicines()">
+        </div>
+      </div>
+
+      <div class="col-12 col-md-auto">
+        <button
+          type="button"
+          class="btn search-btn w-100"
+          (click)="searchMedicines()">
+
+          <i class="fa fa-search me-1"></i>
+          جستجو
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-container" *ngIf="loading">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>در حال دریافت اطلاعات داروها...</p>
+  </div>
+
+  <!-- Medicine List -->
+  <div *ngIf="!loading">
+
+    <div class="result-header d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      <div>
+        <h5 class="mb-1">فهرست داروها</h5>
+        <span class="result-subtitle">داروهای موجود در بانک اطلاعاتی</span>
+      </div>
+
+      <span class="result-count">
+        <i class="fa fa-list-ul me-1"></i>
+        {{ medicines.length }} نتیجه در این صفحه
+      </span>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state text-center"
+         *ngIf="medicines.length === 0">
+
+      <div class="empty-icon">
+        <i class="fa fa-prescription-bottle"></i>
+      </div>
+
+      <h5>دارویی یافت نشد</h5>
+      <p>عبارت دیگری را برای جستجو امتحان کنید.</p>
+    </div>
+
+    <!-- Medicine Cards -->
+    <div class="row g-3" *ngIf="medicines.length > 0">
+
+      <div
+        class="col-12 col-md-6 col-xl-4"
+        *ngFor="let medicine of medicines">
+
+        <div class="medicine-card h-100"
+        [routerLink]="['/medical/medicine', medicine.id]">
+          <div class="medicine-card-header">
+            <div class="drug-icon">
+              <i class="fa fa-pills"></i>
+            </div>
+
+            <span class="drug-form">
+              {{ medicine.form || 'نامشخص' }}
+            </span>
+          </div>
+
+          <div class="medicine-card-body">
+
+            <h5 class="medicine-title">
+              {{ medicine.title }}
+            </h5>
+
+            <div class="medicine-detail">
+              <span>
+                <i class="fa fa-capsules"></i>
+                شکل دارویی
+              </span>
+              <strong>{{ medicine.form || '-' }}</strong>
+            </div>
+
+            <div class="medicine-detail">
+              <span>
+                <i class="fa fa-prescription"></i>
+                دوز دارو
+              </span>
+              <strong>{{ medicine.dosage || '-' }}</strong>
+            </div>
+
+            <div class="medicine-description">
+              <span>
+                <i class="fa fa-info-circle"></i>
+                توضیحات
+              </span>
+
+              <p>
+                {{ medicine.description || 'توضیحاتی ثبت نشده است.' }}
+              </p>
+            </div>
+
+          </div>
+
+          <div class="medicine-card-footer">
+            <span>
+              <i class="fa fa-shield-alt"></i>
+              اطلاعات دارویی
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pagination -->
+    <div
+      class="pagination-container"
+      *ngIf="totalPages > 1">
+
+      <button
+        type="button"
+        class="btn page-btn"
+        [disabled]="pageIndex === 1"
+        (click)="changePage(pageIndex - 1)">
+
+        <i class="fa fa-chevron-right"></i>
+        قبلی
+      </button>
+
+      <span class="page-number">
+        صفحه {{ pageIndex }} از {{ totalPages }}
+      </span>
+
+      <button
+        type="button"
+        class="btn page-btn"
+        [disabled]="pageIndex === totalPages"
+        (click)="changePage(pageIndex + 1)">
+
+        بعدی
+        <i class="fa fa-chevron-left"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

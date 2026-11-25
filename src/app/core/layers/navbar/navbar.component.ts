@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AcountService } from 'src/app/account/account.service';
+import { BasketService } from 'src/app/basket/basket.service';
+import { IBasket } from 'src/app/shared/Models/basket';
+import { IUser } from 'src/app/shared/Models/user';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
+})
+export class NavbarComponent implements OnInit {
+  basket$ : Observable<IBasket>;
+  currentUser$ : Observable<IUser>;
+  constructor(private basketService : BasketService , private accountService : AcountService) { }
+
+  ngOnInit(): void {
+    this.basket$ = this.basketService.basketItems$;
+    this.currentUser$ = this.accountService.currentUser$;
+  }
+  logout(){
+    this.accountService.logout();
+  }
+}

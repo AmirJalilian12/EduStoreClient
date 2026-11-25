@@ -1,0 +1,19 @@
+export class ShopParams{
+    BrandId: number = 0;
+    typeId : number = 0;
+    typeSort : number = 1;
+    sort : number =1;
+    search : string ='';
+    pageSize:number =12;
+    pageIndex:number=1;
+}
+export class MedicineParams{
+    BrandId: number = 0;
+    typeId : number = 0;
+    typeSort : number = 1;
+    sort : number =1;
+    search : string ='';
+    pageSize:number =12;
+    pageIndex:number=1;
+
+}

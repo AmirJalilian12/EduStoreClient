@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -71,6 +72,12 @@
             "production": {
               "browserTarget": "EduStoreClient:build:production"
             },
+              "options":{
+                "browserTarget":"EduStoreClient:build",
+                "sslKey":"./ssl/server.key",
+                "sslCert": "./ssl/serve.crt",
+                "ssl": true
+            },
             "development": {
               "browserTarget": "EduStoreClient:build:development"
             }
@@ -96,6 +103,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -103,5 +111,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "95ac2e9d-5867-4750-b4f0-8bc81e957316"
   }
 }

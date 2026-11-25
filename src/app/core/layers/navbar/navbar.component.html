@@ -1,0 +1,46 @@
+  <header class="p-3 text-bg-dark" dir="rtl">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+
+        <!-- لوگو -->
+        <a routerLink="/" class="d-flex align-items-center text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="لوگو">
+            <use href="#logo"></use>
+          </svg>
+          <span class="fs-5">داروخانه</span>
+        </a>
+
+        <!-- منوی اصلی -->
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li>
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link px-2 text-white">صفحه اصلی</a>
+          </li>
+          <li><a routerLink="/shop" routerLinkActive="active" class="nav-link px-2 text-white">محصولات</a></li>
+          <li><a routerLink="/medical/medicine" routerLinkActive="active" class="nav-link px-2 text-white">داروها</a></li>
+          <li><a routerLink="/contactUs" routerLinkActive="active" class="nav-link px-2 text-white">تماس با ما</a></li>
+          <li><a routerLink="/aboutUs" routerLinkActive="active" class="nav-link px-2 text-white">درباره ما</a></li>
+        </ul>
+
+        <!-- دکمه‌های ورود/عضویت -->
+        <div class="text-end">
+          <ng-container *ngIf="(currentUser$ | async); else items">
+            <button type="button" (click)="logout()" routerLink="/logout" class="btn btn-warning mx-1">خروج</button>
+            <button type="button" routerLink="/profile" class="btn btn-success">پروفایل<span class="fas fa-user-edit"></span></button>
+          </ng-container>
+          <ng-template #items>
+            <button routerLink="/account/login" type="button" class="btn btn-outline-light me-2">ورود</button>
+            <button routerLink="/account/register" type="button" class="btn btn-warning">عضویت</button>
+          </ng-template>
+          <button routerLink="/basket" type="button" class="btn btn-primary position-relative mx-2">
+            <span class="fab fa-shopify "></span>
+            <span *ngIf="basket$ | async as basket" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{basket.items.length}}
+              <span class="visually-hidden">UnreadMessage</span>
+            </span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>

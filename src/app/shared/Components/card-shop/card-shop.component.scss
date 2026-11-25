@@ -1,0 +1,31 @@
+.card-shop {
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .12) !important;
+  }
+
+  .card-shop-img {
+    transition: transform .35s ease;
+  }
+
+  &:hover .card-shop-img {
+    transform: scale(1.05);
+  }
+}
+
+/* محدود کردن متن به ۲ خط */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ارتفاع یکسان کارت‌ها در شبکه */
+.row-cols-1 > * > .card,
+.row-cols-sm-2 > * > .card,
+.row-cols-md-3 > * > .card {
+  height: 100%;
+}

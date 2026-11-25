@@ -1,0 +1,198 @@
+
+<div class="medical-profile-page" dir="rtl">
+
+  <!-- Page Header -->
+  <div class="page-heading">
+
+    <div class="heading-content">
+      <div class="heading-icon">
+        <i class="fa fa-heartbeat"></i>
+      </div>
+
+      <div>
+        <span class="eyebrow">PERSONAL HEALTHCARE</span>
+        <h2>پروفایل پزشکی من</h2>
+        <p>اطلاعات پزشکی و مشخصات سلامت خود را مدیریت کنید.</p>
+      </div>
+    </div>
+
+    <div class="heading-status">
+      <span class="status-dot"></span>
+      پرونده پزشکی
+    </div>
+
+  </div>
+
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <span>در حال دریافت اطلاعات پزشکی...</span>
+  </div>
+
+
+  <!-- Error -->
+  <div *ngIf="errorMessage && !loading" class="error-container">
+    <i class="fa fa-exclamation-circle"></i>
+    <span>{{ errorMessage }}</span>
+
+    <button class="retry-btn" (click)="getMedProfile()">
+      تلاش مجدد
+    </button>
+  </div>
+
+
+  <!-- Profile Content -->
+  <ng-container *ngIf="!loading && !errorMessage">
+
+    <!-- Welcome Card -->
+    <div class="welcome-card">
+
+      <div class="welcome-content">
+        <span class="welcome-label">MEDICAL RECORD</span>
+
+        <h3>سلامت شما، اولویت ماست.</h3>
+
+        <p>
+          اطلاعات پزشکی شما در این بخش نگهداری می‌شود
+          تا در مواقع ضروری دسترسی سریع‌تری به آن داشته باشید.
+        </p>
+      </div>
+
+      <div class="welcome-illustration">
+        <div class="illustration-circle">
+          <i class="fa fa-heartbeat"></i>
+        </div>
+
+        <div class="illustration-plus">
+          <i class="fa fa-plus"></i>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Section Header -->
+    <div class="section-heading">
+
+      <div>
+        <span class="section-eyebrow">YOUR HEALTH INFORMATION</span>
+        <h4>مشخصات پزشکی</h4>
+      </div>
+
+      <div class="record-status"
+           [class.completed]="medProfile?.nationalCode && medProfile?.bloodGroup">
+
+        <i class="fa"
+           [ngClass]="medProfile?.nationalCode && medProfile?.bloodGroup
+           ? 'fa-check-circle' : 'fa-info-circle'">
+        </i>
+
+        {{ medProfile?.nationalCode && medProfile?.bloodGroup
+          ? 'اطلاعات ثبت شده'
+          : 'اطلاعات ناقص' }}
+
+      </div>
+
+    </div>
+
+
+    <!-- Medical Information -->
+    <div class="medical-info-grid">
+
+      <!-- National Code -->
+      <div class="medical-info-card">
+
+        <div class="info-card-top">
+          <div class="info-icon national-icon">
+            <i class="fa fa-id-card-o"></i>
+          </div>
+
+          <span class="info-category">IDENTITY</span>
+        </div>
+
+        <div class="info-card-content">
+          <span class="info-label">کد ملی</span>
+
+          <strong class="info-value">
+            {{ medProfile?.nationalCode || 'ثبت نشده' }}
+          </strong>
+
+          <span class="info-description">
+            شناسه هویتی پرونده پزشکی شما
+          </span>
+        </div>
+
+      </div>
+
+
+      <!-- Blood Group -->
+      <div class="medical-info-card blood-card">
+
+        <div class="info-card-top">
+          <div class="info-icon blood-icon">
+            <i class="fa fa-tint"></i>
+          </div>
+
+          <span class="info-category">BLOOD TYPE</span>
+        </div>
+
+        <div class="info-card-content">
+          <span class="info-label">گروه خونی</span>
+
+          <strong class="info-value blood-value">
+            {{ medProfile?.bloodGroup || 'ثبت نشده' }}
+          </strong>
+
+          <span class="info-description">
+            گروه خونی ثبت شده در پرونده شما
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Empty Information Notice -->
+    <div class="empty-notice"
+         *ngIf="!medProfile?.nationalCode && !medProfile?.bloodGroup">
+
+      <div class="notice-icon">
+        <i class="fa fa-info"></i>
+      </div>
+
+      <div class="notice-content">
+        <strong>هنوز اطلاعات پزشکی ثبت نشده است</strong>
+
+        <p>
+          در حال حاضر اطلاعاتی برای پرونده پزشکی شما ثبت نشده.
+          اطلاعات این بخش پس از ثبت در سیستم نمایش داده خواهند شد.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Security Footer -->
+    <div class="privacy-note">
+
+      <div class="privacy-icon">
+        <i class="fa fa-shield"></i>
+      </div>
+
+      <div>
+        <strong>حریم خصوصی اطلاعات پزشکی</strong>
+        <p>
+          اطلاعات پزشکی شما محرمانه است و فقط در چارچوب
+          دسترسی‌های مجاز سیستم استفاده می‌شود.
+        </p>
+      </div>
+
+      <i class="fa fa-lock privacy-lock"></i>
+
+    </div>
+
+  </ng-container>
+
+</div>

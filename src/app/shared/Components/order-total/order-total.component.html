@@ -1,0 +1,5 @@
+<div class="list-group mt-2 list-group-horizontal list-group-horizontal-md border" *ngIf="basketTotal$ | async as basket">
+    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">هزینه ارسال : {{basket?.shipping}}</button>
+    <button type="button" class="list-group-item list-group-item-action">قیمت محصولات  : {{basket?.subTotal | number}}</button>
+    <button type="button" class="list-group-item list-group-item-action">قیمت نهایی : {{basket?.total | number}}</button>
+</div>

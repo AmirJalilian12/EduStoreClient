@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== کتابخانه‌ها ===== */
+@import '../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css';
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'ngx-toastr/toastr.css';
+@import 'ngx-spinner/animations/square-jelly-box.css';
+.spinner-text{
+  font-size: 1.3rem;
+  color: white;
+  margin-top: 2.2rem;
+}
+/* ===== پایه ===== */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  direction: rtl;                    /* جهت کل صفحه راست‌چین */
+  text-align: right;                 /* متن‌ها راست‌چین */
+  font-family: 'Vazirmatn', 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: #f8f9fa;
+}
+.mat-sidenav{
+    width: 260px;
+    padding: 2px;
+    margin-left: 20px;
+}
+.mat-content{
+    min-height: 400px;
+    padding: 0px 15px;
+    overflow: hidden;
+
+    @media(min-width: 960px){
+        padding-right: 265px;
+    }
+}
+.xng-breadcrumb-root{
+  padding : 8px 16px;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: lightblue;
+}
+.xng-breadcrumb-separator{
+  padding: 0 4px;
+}

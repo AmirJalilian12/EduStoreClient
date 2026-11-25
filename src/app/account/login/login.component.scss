@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap");
+
+.login-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: "Vazirmatn", sans-serif;
+  padding: 1rem;
+}
+
+/* اشکال تزئینی پس‌زمینه */
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 380px;
+  height: 380px;
+  background: #f093fb;
+  top: -100px;
+  right: -100px;
+}
+
+.shape-2 {
+  width: 320px;
+  height: 320px;
+  background: #4facfe;
+  bottom: -100px;
+  left: -100px;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(30px) scale(1.1); }
+}
+
+/* کارت شیشه‌ای */
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem 2rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* برند */
+.brand-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.brand-title {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.brand-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+/* فرم */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-group-custom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+
+  &:focus-within {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+  }
+
+  .input-icon {
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  input {
+    flex: 1;
+    padding: 0.9rem 0.5rem;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .toggle-pass {
+    padding: 0 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover { color: #fff; }
+  }
+}
+
+/* گزینه‌ها */
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+
+    input { accent-color: #fff; }
+  }
+
+  .forgot {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+
+    &:hover { opacity: 1; text-decoration: underline; }
+  }
+}
+
+/* دکمه */
+.btn-login {
+  margin-top: 0.5rem;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  color: #764ba2;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+/* لینک ثبت‌نام */
+.signup-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+
+  a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+.field-error {
+  margin: -6px 4px 10px;
+  font-size: 0.78rem;
+  color: #d93025;
+
+  span { display: block; }
+}
+

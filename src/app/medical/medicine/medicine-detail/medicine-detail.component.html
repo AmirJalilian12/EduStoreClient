@@ -1,0 +1,186 @@
+
+<div class="medicine-detail-page" dir="rtl">
+
+  <!-- Header -->
+  <div class="page-header">
+
+    <button class="back-button" (click)="goBack()">
+      <i class="fa fa-arrow-right"></i>
+      <span>بازگشت به بانک دارویی</span>
+    </button>
+
+    <div class="header-content">
+      <div>
+        <span class="page-eyebrow">MEDICAL KNOWLEDGE BASE</span>
+        <h2>جزئیات دارو</h2>
+        <p>مشاهده اطلاعات تخصصی و مشخصات دارویی</p>
+      </div>
+
+      <div class="header-icon">
+        <i class="fa fa-capsules"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner-border"></div>
+    <p>در حال دریافت اطلاعات دارو...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="errorMessage && !loading" class="error-card">
+    <i class="fa fa-exclamation-circle"></i>
+    <div>
+      <strong>خطا در دریافت اطلاعات</strong>
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+
+  <!-- Medicine Details -->
+  <div *ngIf="medicine && !loading" class="detail-content">
+
+    <!-- Main Medicine Card -->
+    <div class="medicine-hero-card">
+
+      <div class="hero-top">
+        <span class="medicine-code">
+          MEDICINE #{{ medicine.id }}
+        </span>
+
+        <span class="status-badge"
+              [class.active]="medicine.isActive">
+          <span class="status-dot"></span>
+          {{ medicine.isActive ? 'داروی فعال' : 'داروی غیرفعال' }}
+        </span>
+      </div>
+
+      <div class="hero-main">
+
+        <div class="drug-icon">
+          <i class="fa fa-pills"></i>
+        </div>
+
+        <div class="drug-title">
+          <span>نام دارو</span>
+          <h1>{{ medicine.title }}</h1>
+          <div class="drug-subtitle">
+            {{ medicine.form || 'شکل دارویی نامشخص' }}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hero-footer">
+        <div>
+          <i class="fa fa-prescription-bottle-alt"></i>
+          <span>دوز دارویی</span>
+        </div>
+
+        <strong>{{ medicine.dosage || 'ثبت نشده' }}</strong>
+      </div>
+
+    </div>
+
+    <!-- Information Section -->
+    <div class="section-heading">
+      <div class="section-icon">
+        <i class="fa fa-file-medical-alt"></i>
+      </div>
+
+      <div>
+        <h3>اطلاعات دارویی</h3>
+        <p>مشخصات ثبت شده برای این دارو</p>
+      </div>
+    </div>
+
+    <div class="information-grid">
+
+      <div class="info-card">
+        <div class="info-icon green">
+          <i class="fa fa-capsules"></i>
+        </div>
+
+        <div>
+          <label>نام دارو</label>
+          <strong>{{ medicine.title }}</strong>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon purple">
+          <i class="fa fa-tablets"></i>
+        </div>
+
+        <div>
+          <label>شکل دارویی</label>
+          <strong>{{ medicine.form || 'نامشخص' }}</strong>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon orange">
+          <i class="fa fa-prescription"></i>
+        </div>
+
+        <div>
+          <label>دوز دارو</label>
+          <strong>{{ medicine.dosage || 'ثبت نشده' }}</strong>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon blue">
+          <i class="fa fa-toggle-on"></i>
+        </div>
+
+        <div>
+          <label>وضعیت دارو</label>
+          <strong>
+            {{ medicine.isActive ? 'فعال' : 'غیرفعال' }}
+          </strong>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Description -->
+    <div class="description-card">
+
+      <div class="description-header">
+        <div class="section-icon">
+          <i class="fa fa-align-right"></i>
+        </div>
+
+        <div>
+          <h3>توضیحات دارو</h3>
+          <p>اطلاعات تکمیلی و توضیحات ثبت شده</p>
+        </div>
+      </div>
+
+      <div class="description-body">
+        <i class="fa fa-quote-right"></i>
+
+        <p>
+          {{ medicine.description || 'توضیحاتی برای این دارو ثبت نشده است.' }}
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-card" *ngIf="medicine.summary">
+
+      <div class="summary-header">
+        <i class="fa fa-lightbulb"></i>
+        <h3>خلاصه دارو</h3>
+      </div>
+
+      <p>{{ medicine.summary }}</p>
+
+    </div>
+
+  </div>
+
+</div>
